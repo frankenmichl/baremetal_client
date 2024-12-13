@@ -2,7 +2,7 @@
 base_url: http://url-to-baremetal-support-service:8080
 openqa: http://openqa.suse.de
 
-# this is a password to pass to the bootscripts if needd
+# this is a password to pass to the bootscripts if needd, i.e. sshpassword etc.
 password: supersecretpassword
 
 # machine configuration
@@ -10,9 +10,15 @@ machines:
   foo:
     ip: 192.168.100.10
     arch: x86_64
+    UEFI: 0
+    ipmi_host: host-or-ip-of-ipmi-controller
+    ipmi_user: ADMIN
+    ipmi_password: secret123
   bar:
     ip: 192.168.100.11
     arch: aarch64
+    UEFI: 1
+    
 
 # collection of bootscripts, supports jinja2-templates for {{arch}}, {{version}}, {{build}}
 bootscripts:
