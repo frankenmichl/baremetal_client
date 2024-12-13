@@ -25,7 +25,7 @@ There's currently no support for specifying the configuration on the command lin
 config file. 
 
 ## Usage
-´´´bash
+```sh
 $ python client.py --help
 usage: client.py [-h] --machine MACHINE --script SCRIPT [--version VERSION] [--build BUILD] [--verify] [--verbose] [--boot] [--sol]
 
@@ -41,7 +41,7 @@ options:
   --verbose          enable verbose output
   --boot             boot machine using ipmitool
   --sol              connect to sol when done
-´´´
+```
   
 For example: 
 $ python client.py --machine foo --script install --version 15-SP7 --build 47.1 --verify --verbose --boot --sol
