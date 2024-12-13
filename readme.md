@@ -43,8 +43,10 @@ options:
   --sol              connect to sol when done
 ```
   
-For example: 
+For example:
+```sh
 $ python client.py --machine foo --script install --version 15-SP7 --build 47.1 --verify --verbose --boot --sol
+```
 
 This will configure a boot script "install" (from the config file), verify the baremetal support service has 
 the script stored (useful for debugging), show verbose outputs. When done, we will reboot the machine and boot
