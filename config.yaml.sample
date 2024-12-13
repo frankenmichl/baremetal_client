@@ -1,0 +1,27 @@
+# general configuration 
+base_url: http://url-to-baremetal-support-service:8080
+openqa: http://openqa.suse.de
+
+# this is a password to pass to the bootscripts if needd
+password: supersecretpassword
+
+# machine configuration
+machines:
+  foo:
+    ip: 192.168.100.10
+    arch: x86_64
+  bar:
+    ip: 192.168.100.11
+    arch: aarch64
+
+# collection of bootscripts, supports jinja2-templates for {{arch}}, {{version}}, {{build}}
+bootscripts:
+  wait: |
+    #!ipxe
+    echo "waiting for user input"
+    prompt
+  install: |
+    #!ipxe
+    kernel {{openqa}}/assets/repo/SLE-{{version}}-Online-{{arch}}-Build{{build}}-Media1/boot/{{arch}}/loader/linux install={{openqa}}/assets/repo/SLE-{{version}}-Online-{{arch}}-Build{{build}}-Media1   regurl=http://all-{{build}}.proxy.scc.suse.de  console=ttyS1,115200  root=/dev/ram0  initrd=initrd  textmode=1  sshd=1 sshpassword={{password}}  plymouth.enable=0  Y2DEBUG=1 linuxrc.log=/dev/ttyS1 linuxrc.core=/dev/ttyS1 linuxrc.debug=4,trace  reboot_timeout=0
+    initrd {{openqa}}/assets/repo/SLE-{{version}}-Online-{{arch}}-Build{{build}}-Media1/boot/{{arch}}/loader/initrd
+    boot
